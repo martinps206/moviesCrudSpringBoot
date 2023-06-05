@@ -1,0 +1,30 @@
+.catalog-actor-container{
+    display: flex;
+    align-content: stretch;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.catalog-actor-image{
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: red;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 4px;
+}
+
+.catalog-actor-text{
+    height: 32px;
+}
+
+#preview{
+    width: 200px;
+    height: 115px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

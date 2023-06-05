@@ -1,0 +1,71 @@
+<!DOCTYPE xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="~{layouts/head :: head}">
+    <title></title></head>
+<body>
+    <header th:insert="~{layouts/header :: header}">
+
+    </header>
+
+    <div class="container">
+
+        <form th:action="@{/movie}" th:object="${movie}" method="post" class="col-md-8 offset-md-2" enctype="multipart/form-data">
+            <h2 th:text="${title}" class="py-4"></h2>
+
+            <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" th:field="*{name}">
+                    <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="releaseDate" class="col-sm-2 col-form-label">Release Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="releaseDate" th:field="*{releaseDate}">
+                    <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}"></div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="releaseDate" class="col-sm-2 col-form-label">Genre</label>
+                <div class="col-sm-10">
+                    <select class="form-select" th:field="*{genre}">
+                        <option th:each="genre : ${genres}" th:text="${genre.name}" th:value="${genre.id}"></option>
+
+                    </select>
+                    <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="releaseDate" class="col-sm-2 col-form-label">Actor</label>
+                <div class="col-sm-10">
+                    <select class="form-select" th:field="*{actors}" onchange="actorSelected(this)">
+                        <option th:text="'Select actor'" th:value="0"></option>
+                        <option th:each="actor : ${actors}"  th:text="${actor.name}" th:value="${actor.id}" th:data-url="${actor.urlImage}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="releaseDate" class="col-sm-2 col-form-label">Image</label>
+                <div class="col-sm-10">
+                    <input type="file" id="file" name="file" onchange="preview()">
+                    <div id="preview" class="d-none"></div>
+                </div>
+            </div>
+
+            <input id="ids" name="ids" type="text">
+
+            <div id="actors-container" class="row">
+
+            </div>
+
+            <button type="submit" class="btn btn-primary float-end">Save</button>
+        </form>
+
+    </div>
+</body>
+</html>
