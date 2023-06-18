@@ -3,6 +3,8 @@ package com.martinps.service;
 import com.martinps.dao.IMoviesRepositoryImplement;
 import com.martinps.entity.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,5 +32,10 @@ public class MovieService implements IMovieService {
     @Override
     public List<Movie> findAll() {
         return (List<Movie>) iMoviesRepositoryImplement.findAll();
+    }
+
+    @Override
+    public Page<Movie> findAll(PageRequest pageable) {
+        return iMoviesRepositoryImplement.findAll(pageable);
     }
 }

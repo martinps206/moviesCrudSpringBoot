@@ -52,15 +52,16 @@
             <div class="row mb-3">
                 <label for="releaseDate" class="col-sm-2 col-form-label">Image</label>
                 <div class="col-sm-10">
-                    <input type="file" id="file" name="file" onchange="preview()">
                     <div id="preview" class="d-none"></div>
+                    <input type="file" id="file" name="file" onchange="preview()">
                 </div>
             </div>
 
-            <input id="ids" name="ids" type="text">
+            <input id="ids" name="ids" type="hidden" th:value="${ids}">
+            <input id="id" name="id" type="hidden" th:field="*{id}">
+            <input id="image" name="image" type="hidden" th:field="*{image}">
 
             <div id="actors-container" class="row">
-
             </div>
 
             <button type="submit" class="btn btn-primary float-end">Save</button>
@@ -68,4 +69,17 @@
 
     </div>
 </body>
+
+<script>
+    $(function(){
+        let ids= $("#ids").val();
+        let arr = ids.split(", ");
+        $("#ids").val("");
+
+        arr.forEach(ids => {
+            $("#actors").val(id);
+            actorSelected($("#actors")[0]);
+        })
+    })
+</script>
 </html>
